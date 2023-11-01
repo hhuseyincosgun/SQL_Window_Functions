@@ -14,7 +14,7 @@ Time to discover the world of Window Functions with examples; lead( ), lag( ), f
   - 2.1 RANK (), DENSE_RANK () and ROW_NUMBER ()
   - 2.2 PERCENT_RANK (), CUME_DIST ()
   - 2.3 NTILE()
-- [2) Value Window Functions](#queries-and-solutions)
+- [3) Value Window Functions](#3-value-window-functions)
   - 3.1 LAG(), LEAD()
   - 3.2 FIRST_VALUE(), LAST VALUE()
 
@@ -119,5 +119,79 @@ ON P.ProductID = O.ProductID;
 
 ![row_number](https://github.com/hhuseyincosgun/SQL_Window_Functions/assets/21257660/b353889c-52ec-4da7-8a9c-a864a7bd9482)
 
+### 2.2 PERCENT_RANK (), CUME_DIST ()
 
- 
+````sql
+SELECT  OrderID, UnitPrice * Quantity AS Total_Sale,
+   ROUND(PERCENT_RANK() OVER(PARTITION BY OrderID 
+    ORDER BY (O.UnitPrice * O.Quantity) DESC), 2)
+     AS Order_Percent_Rank, 
+   ROUND(CUME_DIST() OVER(PARTITION BY OrderID 
+    ORDER BY (O.UnitPrice * O.Quantity) DESC),2) 
+     AS Order_Cume_Dist
+FROM  [Order Details] O;
+````
+![percent](https://github.com/hhuseyincosgun/SQL_Window_Functions/assets/21257660/f26517e6-2bac-4ac1-87c0-058d81e1a28c)
+
+### 2.3 NTILE()
+
+The NTILE() function in SQL is used to divide the result set into a specified number of roughly equal parts or "tiles" and assign a group or bucket number to each row based on its position within the ordered result set.
+
+List employees by dividing them into 3 groups:
+
+````sql
+SELECT FirstName, LastName, Title,
+   NTILE(3) OVER(ORDER BY FirstName)
+FROM Employees;
+````
+
+![tittle](https://github.com/hhuseyincosgun/SQL_Window_Functions/assets/21257660/584222c7-6f33-44b6-8271-4bea6646bec0)
+
+ ## 3-Value Window Functions
+Value window functions in SQL are employed to assign values from one row to another, typically within a specific window. Similar to ranking window functions, and unlike aggregate functions, these value functions lack straightforward equivalents that don't involve windowing.
+
+### 3.1 LAG(), LEAD()
+
+Sorting the shipping costs paid by customers according to their order dates:
+
+````sql
+SELECT CustomerID, 
+  CONVERT(VARCHAR(10), orderdate , 111) AS OrderDate, 
+  Shippers.CompanyName Shipper_Name, 
+     LAG(Freight) OVER(PARTITION BY customerID 
+       ORDER BY orderdate DESC) AS Previous_Order_Freight, 
+  Freight AS Order_Freight, 
+     LEAD(Freight) OVER(PARTITION BY customerID 
+       ORDER BY orderdate DESC) AS Next_Order_Freight
+FROM Orders
+JOIN Shippers 
+ON Shippers.ShipperID = Orders.ShipVia;
+````
+
+![lag](https://github.com/hhuseyincosgun/SQL_Window_Functions/assets/21257660/171e510c-e4af-4a8b-9d1d-376a04bf698f)
+
+### 3.2 FIRST_VALUE(), LAST VALUE()
+
+Listing of total prices by customers for each order:
+
+````sql
+SELECT O.CustomerID, OD.OrderID,
+ CONVERT(VARCHAR(10), O.OrderDate , 111) AS OrderDate,
+ SUM(OD.UnitPrice*OD.Quantity) AS Total_Price, 
+    FIRST_VALUE(SUM(OD.UnitPrice*OD.Quantity)) OVER 
+       (PARTITION BY O.CustomerID 
+          ORDER BY O.CustomerID,O.OrderDate) First_Order,
+    LAST_VALUE(SUM(OD.UnitPrice*OD.Quantity)) OVER 
+       (PARTITION BY O.CustomerID 
+          ORDER BY O.CustomerID,O.OrderDate) Last_Order
+FROM [Order Details] OD
+JOIN Orders O
+ON O.OrderID = OD.OrderID
+GROUP BY O.CustomerID, OD.OrderID, O.OrderDate
+ORDER BY O.CustomerID, O.OrderDate;
+````
+
+![first_last](https://github.com/hhuseyincosgun/SQL_Window_Functions/assets/21257660/e34c5402-b241-4304-97e9-12b7af4ca78e)
+
+
+
