@@ -7,7 +7,7 @@ Time to discover the world of Window Functions with examples; lead( ), lag( ), f
 ## 📋 Table of Contents
 - [Window Functions](#window-functions)
 - [Northwind Database Diagram](#northwind-database-diagram)
-- [1) Aggregate Window Functions](#1)-aggregate-window-functions)
+- [1) Aggregate Window Functions](#1-aggregate-window-functions)
   - 1.1 COUNT (), SUM ()
   - 1.2 MIN (), MAX (), AVG ()
 - [2) Ranking Window Functions](#queries-and-solutions)
@@ -37,7 +37,7 @@ The Northwind database is a sample database that was originally created by Micro
 
 ![White diagram](https://github.com/hhuseyincosgun/SQL_Window_Functions/assets/21257660/d4329263-a798-4a61-99ac-533291a527f8)
 
-## 1) Aggregate Window Functions
+## 1-Aggregate Window Functions
 Aggregate window functions refer to the application of aggregate functions like SUM(), COUNT(), AVERAGE(), MAX(), and MIN() over a specific window, which is a defined set of rows within a result set.
 
 ### 1.1 COUNT (), SUM ()
