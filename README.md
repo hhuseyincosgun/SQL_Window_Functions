@@ -10,7 +10,7 @@ Time to discover the world of Window Functions with examples; lead( ), lag( ), f
 - [1) Aggregate Window Functions](#1-aggregate-window-functions)
   - 1.1 COUNT (), SUM ()
   - 1.2 MIN (), MAX (), AVG ()
-- [2) Ranking Window Functions](#queries-and-solutions)
+- [2) Ranking Window Functions](#2-ranking-window-functions)
   - 2.1 RANK (), DENSE_RANK () and ROW_NUMBER ()
   - 2.2 PERCENT_RANK (), CUME_DIST ()
   - 2.3 NTILE()
@@ -91,5 +91,33 @@ ORDER BY CustomerID;
 ````
 ![min_max_avg](https://github.com/hhuseyincosgun/SQL_Window_Functions/assets/21257660/3b6adc26-12fe-4c03-ae8e-a88c8c7d340f)
 
-## 2) Ranking Window Functions
+## 2-Ranking Window Functions
+**RANK()**: Assigns a unique rank to each row, leaving gaps in case of ties.
+
+**DENSE_RANK ()**: Assigns a unique rank to each row, with continuous ranks for tied rows.
+
+**ROW_NUMBER ()**: Assigns a unique sequential integer to each row, regardless of ties, without gaps.
+
+**PERCENT_RANK()**: Calculates the relative rank of a specific row within the result set as a percentage.
+
+**CUME_DIST ()**: Calculates the cumulative distribution of a value in the result set. It represents the proportion of rows that are less than or equal to the current row.
+
+### 2.1 RANK (), DENSE_RANK () and ROW_NUMBER ()
+
+Ranking of the most paid products in each order:
+
+
+````sql
+SELECT  OrderID, P.ProductName, (O.UnitPrice * O.Quantity) AS Total_Sale,
+   ROW_NUMBER() OVER(ORDER BY (O.UnitPrice * Quantity) DESC) AS Order_RN, 
+   RANK() OVER(ORDER BY (O.UnitPrice * O.Quantity) DESC) AS Order_Rank, 
+   DENSE_RANK() OVER(ORDER BY (O.UnitPrice * O.Quantity) DESC) AS Order_Dense
+FROM  [Order Details] O
+JOIN Products P
+ON P.ProductID = O.ProductID;
+````
+
+![row_number](https://github.com/hhuseyincosgun/SQL_Window_Functions/assets/21257660/b353889c-52ec-4da7-8a9c-a864a7bd9482)
+
+
  
