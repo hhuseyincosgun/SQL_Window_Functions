@@ -1,9 +1,12 @@
 # 📁 SQL_Window_Functions
 Time to discover the world of Window Functions with examples; lead( ), lag( ), first_value( ), last_value( ), row_number( ), rank( ), dense_rank( ) …
 
+![Window_Func](https://github.com/hhuseyincosgun/SQL_Window_Functions/blob/main/Window_Func.png)
+
+
 ## 📋 Table of Contents
 - [Window Functions](#window-functions)
-- [About The Northwind Database](#relational-database-diagram)
+- [Northwind Database Diagram](#northwind-database-diagram)
 - [1) Aggregate Window Functions](#queries-and-solutions)
   - 1.1 COUNT (), SUM ()
   - 1.2 MIN (), MAX (), AVG ()
@@ -27,6 +30,12 @@ If you have any questions, reach out to me on:
 
 SQL window functions enable efficient and precise data analysis by allowing calculations within specific partitions or rows. They're crucial for tasks like ranking, aggregation, and trend analysis in SQL queries.
 These functions are applied to each row of a result set, and they use an OVER() clause to determine how each row is processed within a "window," allowing control over the function's behavior within a group of ordered data.
+
+
+## Northwind Database Diagram
+![image](https://github.com/hhuseyincosgun/SQL_Window_Functions/assets/21257660/1b882d0a-0080-4931-b06e-8e12c338ff3b)
+
+
 
 
 
