@@ -1,12 +1,14 @@
 # 📁 SQL_Window_Functions
-Time to discover the world of Window Functions with examples; lead( ), lag( ), first_value( ), last_value( ), row_number( ), rank( ), dense_rank( ) …
+Time to discover the world of Window Functions with examples. You can improve your skills by using window functions. 
+
+lead( ), lag( ), first_value( ), last_value( ), row_number( ), rank( ), dense_rank( ) …
 
 ![Window_Func](https://github.com/hhuseyincosgun/SQL_Window_Functions/blob/main/Window_Func.png)
 
 
 ## 📋 Table of Contents
 - [Window Functions](#window-functions)
-- [Northwind Database Diagram](#northwind-database-diagram)
+- [The Northwind Relationship Diagram](#the-northwind-relationship-diagram)
 - [1) Aggregate Window Functions](#1-aggregate-window-functions)
   - 1.1 COUNT (), SUM ()
   - 1.2 MIN (), MAX (), AVG ()
@@ -32,7 +34,8 @@ These functions are applied to each row of a result set, and they use an OVER() 
 
 ![image](https://github.com/hhuseyincosgun/SQL_Window_Functions/assets/21257660/1b882d0a-0080-4931-b06e-8e12c338ff3b)
 
-## Northwind Database Diagram
+(source: https://www.postgresqltutorial.com/postgresql-window-function/)
+## The Northwind Relationship Diagram
 The Northwind database is a sample database that was originally created by Microsoft for educational and training purposes. It's a relational database model that represents a fictional company's operations, particularly a company involved in the wholesale distribution of various products. The Northwind database is often used as a teaching and learning tool for practicing SQL queries, data modeling, and database management.
 
 ![White diagram](https://github.com/hhuseyincosgun/SQL_Window_Functions/assets/21257660/d4329263-a798-4a61-99ac-533291a527f8)
