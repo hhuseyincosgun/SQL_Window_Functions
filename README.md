@@ -1,4 +1,4 @@
-# 📁 SQL_Window_Functions
+# 📁 SQL Window Functions
 Time to discover the world of Window Functions with examples. You can improve your skills by using window functions. 
 
 lead( ), lag( ), first_value( ), last_value( ), row_number( ), rank( ), dense_rank( ) …
